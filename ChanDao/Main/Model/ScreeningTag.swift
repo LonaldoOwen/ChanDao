@@ -11,4 +11,5 @@ import Foundation
 struct ScreeningTag {
     let id: String
     let name: String
+    let subTags: [ScreeningTag]?
 }
