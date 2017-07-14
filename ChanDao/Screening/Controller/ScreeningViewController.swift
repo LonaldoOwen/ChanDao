@@ -5,6 +5,9 @@
 //  Created by owen on 17/7/7.
 //  Copyright © 2017年 owen. All rights reserved.
 //
+/**
+    筛选页面，使用UICollectionView
+*/
 
 import UIKit
 
