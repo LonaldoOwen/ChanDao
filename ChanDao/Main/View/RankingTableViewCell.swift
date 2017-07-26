@@ -17,6 +17,7 @@ class RankingTableViewCell: UITableViewCell {
     }()
     let nameLabel: UILabel = {
         let nameLable: UILabel = UILabel()
+        nameLable.numberOfLines = 0
         return nameLable
     }()
     let totalCountLabel: UILabel = {
@@ -75,7 +76,7 @@ class RankingTableViewCell: UITableViewCell {
     /// data model variable
     var ranking: RankingModel? {
         didSet {
-            self.rankLabel.text = ranking.
+            self.rankLabel.text = ranking?.rank
         }
     }
     

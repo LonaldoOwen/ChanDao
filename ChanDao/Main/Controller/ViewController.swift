@@ -23,6 +23,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //view.backgroundColor = UIColor.gray
         
         ///
+        /*
         Network.request(method: "POST", url: "http://test.api.fengchaoyou.com/v1/product/detail", parameters: ["data": ["id": "46658"]]) { (data, response, error) in
 
             do {
@@ -34,6 +35,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             }
             
         }
+        */
         
         //
         navigationBarWithSegment.isTranslucent = false
@@ -41,6 +43,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //
         tableView.dataSource = self
         tableView.delegate = self
+//        tableView.estimatedRowHeight = 100
+//        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = 100
         
     }
     
@@ -66,11 +71,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 
     // MARK: action
     @IBAction func showCollection(_ sender: Any) {
+        /*
+        // 第一种方式
         let screeningVC = ScreeningViewController()
         screeningVC.view.backgroundColor = UIColor(red: 50/255, green: 50/255, blue: 50/255, alpha: 0.2)
         screeningVC.modalTransitionStyle = .crossDissolve
         screeningVC.modalPresentationStyle = .overFullScreen
         navigationController?.present(screeningVC, animated: true, completion: nil)
+        */
+        // 第二种方式：
+        let screeingVC = SecondScreeningViewController()
+        self.show(screeingVC, sender: nil)
     }
     
     
@@ -79,11 +90,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 50
+        return 10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: RankingTableViewCell = tableView.dequeueReusableCell(withIdentifier: "RankingCell") as! RankingTableViewCell
         cell.rankLabel.text = "\(indexPath.row)"
+        cell.nameLabel.text = "头像：同我的微店中设置的头像，点击弹层展示更换头像的方式，可以调起相机的前置摄像头拍摄，也可以从相册中选择。"
+        cell.totalCountLabel.text = "999"
         return cell
     }
     
