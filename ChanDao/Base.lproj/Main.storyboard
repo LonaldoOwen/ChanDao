@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="E2Q-Ax-TUM">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="mca-zL-j48">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -261,12 +261,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z0o-JF-7kj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="197.59999999999999" y="2632.5337331334335"/>
+            <point key="canvasLocation" x="142" y="2328"/>
         </scene>
-        <!--View Controller-->
+        <!--Temp View Controller-->
+        <scene sceneID="ec7-pe-Lzo">
+            <objects>
+                <viewController id="mca-zL-j48" customClass="TempViewController" customModule="ChanDao" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="2Uq-LN-riS"/>
+                        <viewControllerLayoutGuide type="bottom" id="K69-Fm-jXE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="dTq-6X-swN">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jG0-KL-IQa" customClass="ItemView" customModule="ChanDao" customModuleProvider="target">
+                                <rect key="frame" x="85" y="313" width="204" height="40.5"/>
+                                <connections>
+                                    <action selector="handleItemViewClicik:" destination="mca-zL-j48" eventType="valueChanged" id="YyD-ym-FLd"/>
+                                </connections>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="jG0-KL-IQa" firstAttribute="centerX" secondItem="dTq-6X-swN" secondAttribute="centerX" id="3L0-SM-BJ1"/>
+                            <constraint firstItem="jG0-KL-IQa" firstAttribute="centerY" secondItem="dTq-6X-swN" secondAttribute="centerY" id="c9Y-dc-xeG"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="itemView" destination="jG0-KL-IQa" id="tgz-Gn-nkV"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="QOv-N7-cCq" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="124" y="3057"/>
+        </scene>
+        <!--Temp View Controller-->
         <scene sceneID="asR-97-dB8">
             <objects>
-                <viewController id="coX-aZ-2On" sceneMemberID="viewController">
+                <viewController id="coX-aZ-2On" customClass="TempViewController" customModule="ChanDao" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="zVx-cc-k4Y"/>
                         <viewControllerLayoutGuide type="bottom" id="OQw-6b-BYP"/>
@@ -368,6 +401,11 @@
                                             <constraint firstItem="5Ms-Ux-S60" firstAttribute="leading" secondItem="FO0-WG-cbl" secondAttribute="leading" constant="8" id="yOK-vb-k2C"/>
                                         </constraints>
                                     </view>
+                                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ujD-xl-SKL" customClass="UIControl">
+                                        <rect key="frame" x="67" y="259" width="240" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
@@ -389,6 +427,10 @@
                             <constraint firstItem="OQw-6b-BYP" firstAttribute="top" secondItem="s5V-xe-vdw" secondAttribute="bottom" id="np1-rh-gAM"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="controlAction" destination="ujD-xl-SKL" id="RAw-63-SiQ"/>
+                        <outlet property="viewAction" destination="ujD-xl-SKL" id="0MV-HN-9vZ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nVw-7V-Al4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

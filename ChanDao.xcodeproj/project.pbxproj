@@ -13,6 +13,10 @@
 		2332B68D1F2773FE00EFD978 /* SecondScreeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332B68C1F2773FE00EFD978 /* SecondScreeningViewController.swift */; };
 		2332B68F1F277A3E00EFD978 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332B68E1F277A3E00EFD978 /* ItemView.swift */; };
 		2332B6911F277C2900EFD978 /* ItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2332B6901F277C2900EFD978 /* ItemView.xib */; };
+		2332B6971F29AA3100EFD978 /* TempViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332B6961F29AA3100EFD978 /* TempViewController.swift */; };
+		2332B6991F29F41900EFD978 /* CustomView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332B6981F29F41900EFD978 /* CustomView.swift */; };
+		2332B69B1F2A212700EFD978 /* CustomButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332B69A1F2A212600EFD978 /* CustomButton.swift */; };
+		2332B69D1F2A213C00EFD978 /* CustomButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 2332B69C1F2A213C00EFD978 /* CustomButton.xib */; };
 		23CD731C1F18BF36006C70C1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD730F1F18BF36006C70C1 /* ViewController.swift */; };
 		23CD731D1F18BF36006C70C1 /* RankingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD73121F18BF36006C70C1 /* RankingTableViewCell.swift */; };
 		23CD731E1F18BF36006C70C1 /* ScreeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23CD73151F18BF36006C70C1 /* ScreeningViewController.swift */; };
@@ -34,6 +38,10 @@
 		2332B68C1F2773FE00EFD978 /* SecondScreeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondScreeningViewController.swift; sourceTree = "<group>"; };
 		2332B68E1F277A3E00EFD978 /* ItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
 		2332B6901F277C2900EFD978 /* ItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ItemView.xib; sourceTree = "<group>"; };
+		2332B6961F29AA3100EFD978 /* TempViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TempViewController.swift; sourceTree = "<group>"; };
+		2332B6981F29F41900EFD978 /* CustomView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomView.swift; sourceTree = "<group>"; };
+		2332B69A1F2A212600EFD978 /* CustomButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomButton.swift; sourceTree = "<group>"; };
+		2332B69C1F2A213C00EFD978 /* CustomButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CustomButton.xib; sourceTree = "<group>"; };
 		23CD730F1F18BF36006C70C1 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		23CD73121F18BF36006C70C1 /* RankingTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RankingTableViewCell.swift; sourceTree = "<group>"; };
 		23CD73151F18BF36006C70C1 /* ScreeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreeningViewController.swift; sourceTree = "<group>"; };
@@ -68,6 +76,17 @@
 				23134E8E1F1889860052BBD7 /* NetworkManager.swift */,
 			);
 			path = Network;
+			sourceTree = "<group>";
+		};
+		2332B6951F29AA1400EFD978 /* Temp */ = {
+			isa = PBXGroup;
+			children = (
+				2332B6961F29AA3100EFD978 /* TempViewController.swift */,
+				2332B6981F29F41900EFD978 /* CustomView.swift */,
+				2332B69A1F2A212600EFD978 /* CustomButton.swift */,
+				2332B69C1F2A213C00EFD978 /* CustomButton.xib */,
+			);
+			path = Temp;
 			sourceTree = "<group>";
 		};
 		23CD730D1F18BF36006C70C1 /* Main */ = {
@@ -166,6 +185,7 @@
 				5A84ACB81F0FD64500FC0E9A /* AppDelegate.swift */,
 				23CD730D1F18BF36006C70C1 /* Main */,
 				23CD73131F18BF36006C70C1 /* Screening */,
+				2332B6951F29AA1400EFD978 /* Temp */,
 				23134E8C1F1889860052BBD7 /* Network */,
 				5A84ACBC1F0FD64500FC0E9A /* Main.storyboard */,
 				5A84ACBF1F0FD64500FC0E9A /* Assets.xcassets */,
@@ -239,6 +259,7 @@
 				5A84ACC01F0FD64500FC0E9A /* Assets.xcassets in Resources */,
 				23CD731F1F18BF36006C70C1 /* ScreeningTag.plist in Resources */,
 				2332B6911F277C2900EFD978 /* ItemView.xib in Resources */,
+				2332B69D1F2A213C00EFD978 /* CustomButton.xib in Resources */,
 				2332B67F1F26127F00EFD978 /* TempTags.plist in Resources */,
 				5A84ACBE1F0FD64500FC0E9A /* Main.storyboard in Resources */,
 			);
@@ -254,15 +275,18 @@
 				23134E901F1889860052BBD7 /* NetworkManager.swift in Sources */,
 				23CD731E1F18BF36006C70C1 /* ScreeningViewController.swift in Sources */,
 				23134E8F1F1889860052BBD7 /* Network.swift in Sources */,
+				2332B6991F29F41900EFD978 /* CustomView.swift in Sources */,
 				2332B68D1F2773FE00EFD978 /* SecondScreeningViewController.swift in Sources */,
 				23CD731C1F18BF36006C70C1 /* ViewController.swift in Sources */,
 				23CD73221F18BF36006C70C1 /* SectionHeaderView.swift in Sources */,
+				2332B6971F29AA3100EFD978 /* TempViewController.swift in Sources */,
 				23CD73261F18C82E006C70C1 /* RankingModel.swift in Sources */,
 				2332B68F1F277A3E00EFD978 /* ItemView.swift in Sources */,
 				23CD73211F18BF36006C70C1 /* ScreeningCell.swift in Sources */,
 				5A84ACB91F0FD64500FC0E9A /* AppDelegate.swift in Sources */,
 				23CD73201F18BF36006C70C1 /* ScreeningTag.swift in Sources */,
 				23CD731D1F18BF36006C70C1 /* RankingTableViewCell.swift in Sources */,
+				2332B69B1F2A212700EFD978 /* CustomButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
