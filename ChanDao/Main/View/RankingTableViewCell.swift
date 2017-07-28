@@ -76,7 +76,7 @@ class RankingTableViewCell: UITableViewCell {
     /// data model variable
     var ranking: RankingModel? {
         didSet {
-            self.rankLabel.text = ranking?.rank
+            self.rankLabel.text = ranking?.index
         }
     }
     
