@@ -76,9 +76,14 @@ class RankingTableViewCell: UITableViewCell {
     /// data model variable
     var ranking: RankingModel? {
         didSet {
-            self.rankLabel.text = ranking?.rank
+            self.rankLabel.text = ranking?.index
+            self.nameLabel.text = ranking?.name
+            self.totalCountLabel.text = ranking?.totalCount
         }
     }
+    
+
+    
     
     /// 事件处理clsure
 

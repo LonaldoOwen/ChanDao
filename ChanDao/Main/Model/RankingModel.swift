@@ -11,5 +11,11 @@ import Foundation
 struct RankingModel {
     let index: String
     let name: String
-    let rank: String
+    let totalCount: String
+    
+    init(index: String, name: String, totalCount:String) {
+        self.index = index
+        self.name = name
+        self.totalCount = totalCount
+    }
 }
