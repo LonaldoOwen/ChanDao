@@ -92,8 +92,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         navigationController?.present(screeningVC, animated: true, completion: nil)
         */
         // 第二种方式：
-        let screeingVC = SecondScreeningViewController()
-        self.show(screeingVC, sender: nil)
+//        let screeingVC = SecondScreeningViewController()
+//        self.show(screeingVC, sender: nil)
     }
     
     
