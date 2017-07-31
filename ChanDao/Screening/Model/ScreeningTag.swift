@@ -13,3 +13,13 @@ struct ScreeningTag {
     let name: String
     let subTags: [ScreeningTag]?
 }
+
+///
+/*  */
+enum ScreeningCase {
+    case zero   // 选中0个，都未选中
+    case one    // 选中1个
+    case two    // 选中2个
+    case three  // 选中3个
+    case four   // 选择4个
+}
