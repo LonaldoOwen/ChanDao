@@ -18,6 +18,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("viewDidLoad")
         // Do any additional setup after loading the view, typically from a nib.
         //
         //view.isOpaque = false
@@ -63,10 +64,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        print("viewWillAppear")
         navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         navigationController?.navigationBar.shadowImage = UIImage()
         //navigationController?.navigationBar.barTintColor = barBackgroundColor
+        // request data
+        //requestData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -99,10 +102,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     // MARK: data source
     func numberOfSections(in tableView: UITableView) -> Int {
+        print("numberOfSections")
         return 1
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return (dataModels?.count)!
+        print("numberOfRowsInSection")
+        return self.dataModels?.count ?? 5
         //return 10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -119,7 +124,9 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     /// MARK:
     func requestData() {
+        print("requestData")
         Network.get(url: "http://zentao.cct.cn/app/get-worst-all") { (data, response, error) in
+            
             do {
                 let jsonData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
                 print("jsonData: \(jsonData)")
@@ -132,7 +139,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                         totalCount: $0["resolvedNum"] as! String
                     )
                 }
-                self.dataModels = rankings
+                self.dataModels?.append(contentsOf: rankings)
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
                 }
