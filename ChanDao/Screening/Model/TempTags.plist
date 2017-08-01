@@ -20,6 +20,7 @@
 							<string>一级</string>
 							<string>二级</string>
 							<string>三级</string>
+                            <string>四级</string>
 						</array>
 					</dict>
                     <dict>
@@ -40,6 +41,15 @@
                             <string>三级</string>
                         </array>
                     </dict>
+                    <dict>
+                        <key>developer_name</key>
+                        <string>开发100</string>
+                        <key>bug_levels</key>
+                        <array>
+                            <string>三级</string>
+                        </array>
+                    </dict>
+
 				</array>
 			</dict>
 			<dict>
@@ -129,7 +139,6 @@
                         <string>开发100</string>
                         <key>bug_levels</key>
                         <array>
-                            <string>一级</string>
                             <string>二级</string>
                             <string>三级</string>
                         </array>

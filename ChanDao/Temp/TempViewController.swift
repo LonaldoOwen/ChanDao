@@ -25,6 +25,28 @@ class TempViewController: UIViewController {
 
         // Do any additional setup after loading the view.
         
+        ///
+        /*
+         let headers = [
+         "Content-Type": "application/json",
+         "seqnum": "0",
+         "ver": "1.0",
+         "uid": "498",
+         "token": "nq4LWlvy7lJW-kh07fRRuDGeBwRvpnsJ0BGl17Xe4eeZEwvXwQN8HoBAluLmJbpQ",
+         ]
+         Network.request(method: "POST", url: "http://test.api.fengchaoyou.com/v1/product/detail", headers: headers, parameters: ["data": ["id": "46658"]]) { (data, response, error) in
+         
+         do {
+         if let jsonData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: AnyObject] {
+         print("jsonData: \(String(describing: jsonData))")
+         }
+         } catch let error {
+         print("error: \(error.localizedDescription)")
+         }
+         
+         }
+         */
+        
         //
         let customView = CustomView(frame: CGRect(x: 10, y: 100, width: 100, height: 50))
         customView.backgroundColor = UIColor.lightGray
