@@ -588,19 +588,35 @@ class ThirdViewController: UIViewController {
         var bugLevels: [String] = []
         
         bugLevels.append(contentsOf: getAllBugLevel())    // all
-        for product in allData {
-            for project in (product as! [String: Any])["projects"] as! [[String: Any]] {
-                for developer in project["developers"] as! [[String: Any]] {
+        /* 使用for-in实现 */
+//        for product in allData {
+//            for project in (product as! [String: Any])["projects"] as! [[String: Any]] {
+//                for developer in project["developers"] as! [[String: Any]] {
+//                    let levels = developer["bug_levels"] as! [String]
+//                    if levels.contains(name) {
+//                        products.append((product as! [String: Any])["product_name"] as! String)
+//                        projects.append(project["project_name"] as! String)
+//                        developers.append(developer["developer_name"] as! String)
+//                    }
+//                }
+//            }
+//            
+//        }
+        /* 使用forEach实现 */
+        allData.forEach { (product) in
+            ((product as! [String: Any])["projects"] as! [[String: Any]]).forEach({ (project) in
+                (project["developers"] as! [[String: Any]]).forEach({ (developer) in
                     let levels = developer["bug_levels"] as! [String]
                     if levels.contains(name) {
                         products.append((product as! [String: Any])["product_name"] as! String)
                         projects.append(project["project_name"] as! String)
                         developers.append(developer["developer_name"] as! String)
                     }
-                }
-            }
-            
+
+                })
+            })
         }
+        
         screeingDic = ["products": products, "projects": projects, "developers": developers, "bugLevels": bugLevels]
     }
     
@@ -634,7 +650,13 @@ class ThirdViewController: UIViewController {
     
     
     /* 选中2个，6种 （） */
-    func filterCaseTwo() {}
+    func filterCaseTwo() {
+        caseTwo01()
+        caseTwo02()
+    }
+    func caseTwo01() {}
+    func caseTwo02() {}
+    
     /* 选中3个，4种 （） */
     func filterCaseThree() {}
     /* 选中4个，1种 （） */
