@@ -569,6 +569,7 @@ class ThirdViewController: UIViewController {
     
     /*产品选中，*/
     func caseOne01(_ object: Any) {
+        
         var products: [String] = []
         var projects: [String] = []
         var developers: [String] = []
@@ -636,6 +637,7 @@ class ThirdViewController: UIViewController {
     }
     /* bug级别选中，*/
     func caseOne04(_ object: Any) {
+        
         var products: [String] = []
         var projects: [String] = []
         var developers: [String] = []
