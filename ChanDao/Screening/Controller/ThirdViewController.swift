@@ -656,14 +656,30 @@ class ThirdViewController: UIViewController {
         let developer = parameters["developer"]
         let bugLevel = parameters["bugLevel"]
         
-        if prodect == "" && project == "" && developer != "" && bugLevel != "" {
+        // 12
+        if prodect != "" && project != "" && developer == "" && bugLevel == "" {
             caseTwo01()
         }
-        if prodect == "" && project != "" && developer == "" && bugLevel != "" {
+        // 13
+        if prodect != "" && project == "" && developer != "" && bugLevel == "" {
             caseTwo02()
         }
-        caseTwo01()
-        caseTwo02()
+        // 14
+        if prodect != "" && project == "" && developer == "" && bugLevel != "" {
+            caseTwo03()
+        }
+        // 23
+        if prodect == "" && project != "" && developer != "" && bugLevel == "" {
+            caseTwo04()
+        }
+        // 24
+        if prodect == "" && project != "" && developer == "" && bugLevel != "" {
+            caseTwo05()
+        }
+        // 34
+        if prodect == "" && project == "" && developer != "" && bugLevel != "" {
+            caseTwo06()
+        }
     }
     /* 12 */
     func caseTwo01() {
@@ -676,8 +692,8 @@ class ThirdViewController: UIViewController {
             if (product as! [String: Any])["product_name"] as? String == parameters["product"] {
                 products.append(parameters["product"]!)
                 for project in (product as! [String: Any])["projects"] as! [[String: Any]] {
+                    projects.append(project["project_name"] as! String)     //当前产品包含所有项目
                     if project["project_name"] as? String == parameters["project"] {
-                        projects.append(project["project_name"] as! String)
                         for developer in project["developers"] as! [[String: Any]]{
                             developers.append(developer["developer_name"] as! String)
                             bugLevels.append(contentsOf: developer["bug_levels"] as! [String])
@@ -703,9 +719,9 @@ class ThirdViewController: UIViewController {
                 products.append(parameters["product"]!)
                 for project in (product as! [String: Any])["projects"] as! [[String: Any]] {
                     for developer in project["developers"] as! [[String: Any]]{
+                        developers.append(developer["developer_name"] as! String)   //当前产品包含所有开发
                         if developer["developer_name"] as? String == parameters["developer"] {
                             projects.append(project["project_name"] as! String)
-                            developers.append(developer["developer_name"] as! String)
                             bugLevels.append(contentsOf: developer["bug_levels"] as! [String])
                         }
                     }
@@ -717,8 +733,67 @@ class ThirdViewController: UIViewController {
         screeingDic = ["products": products, "projects": projects, "developers": developers, "bugLevels": bugLevels]
 
     }
+    /* 14 */
     func caseTwo03() {
+        var products: [String] = []
+        var projects: [String] = []
+        var developers: [String] = []
+        var bugLevels: [String] = []
+        
+        for product in allData {
+            if (product as! [String: Any])["product_name"] as? String == parameters["product"] {
+                products.append(parameters["product"]!)
+                for project in (product as! [String: Any])["projects"] as! [[String: Any]] {
+                    for developer in project["developers"] as! [[String: Any]]{
+                        for bugLevel in developer["bug_levels"] as! [String] {
+                            bugLevels.append(contentsOf: developer["bug_levels"] as! [String])  //当前产品包含所有bugLevel
+                            if bugLevel == parameters["bugLevel"] {
+                                projects.append(project["project_name"] as! String)
+                                developers.append(developer["developer_name"] as! String)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        // 去重
+        bugLevels = filterRepeat(bugLevels)
+        screeingDic = ["products": products, "projects": projects, "developers": developers, "bugLevels": bugLevels]
     }
+    /* 23 */ ？？？
+    func caseTwo04() {
+        var products: [String] = []
+        var projects: [String] = []
+        var developers: [String] = []
+        var bugLevels: [String] = []
+        
+        for product in allData {
+            for project in (product as! [String: Any])["projects"] as! [[String: Any]] {
+                if project["project_name"] as? String == parameters["project"] {
+                    products.append(parameters["product"]!)
+                    
+                    for developer in project["developers"] as! [[String: Any]]{
+                        developers.append(developer["developer_name"] as! String)   // 当前项目下所有开发
+                        if developer["developer_name"] as? String == parameters["developer"] {
+                            projects.append(project["project_name"] as! String)
+                            bugLevels.append(contentsOf: developer["bug_levels"] as! [String])
+                        }
+                    }
+                }
+            }
+        }
+        // 去重
+        bugLevels = filterRepeat(bugLevels)
+        screeingDic = ["products": products, "projects": projects, "developers": developers, "bugLevels": bugLevels]
+    }
+    /* 24 */
+    func caseTwo05() {}
+    /* 34 */
+    func caseTwo06() {}
+    
+    
+    
+    
     
     /* 选中3个，4种 （） */
     func filterCaseThree() {}
