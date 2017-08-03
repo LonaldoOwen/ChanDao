@@ -317,92 +317,66 @@ class ThirdViewController: UIViewController {
     /* 生成过滤情况 */
     func getCurrentCase() -> ScreeningCase {
         print("getCurrentCase")
-        let prodect = parameters["product"]
+        let product = parameters["product"]
         let project = parameters["project"]
         let developer = parameters["developer"]
         let bugLevel = parameters["bugLevel"]
         
         // .zero
-        if prodect == "" && project == "" && developer == "" && bugLevel == "" {
+        if product == "" && project == "" && developer == "" && bugLevel == "" {
             return ScreeningCase.zero
         }
         
         // .one
-//        if prodect == "" && project != "" && developer != "" && bugLevel != "" {
-//            return ScreeningCase.one
-//        }
-//        if prodect != "" && project == "" && developer != "" && bugLevel != "" {
-//            return ScreeningCase.one
-//        }
-//        if prodect != "" && project != "" && developer == "" && bugLevel != "" {
-//            return ScreeningCase.one
-//        }
-//        if prodect != "" && project != "" && developer != "" && bugLevel == "" {
-//            return ScreeningCase.one
-//        }
-        // .one
-        if prodect == "" && project == "" && developer == "" && bugLevel != "" {
+        if product == "" && project == "" && developer == "" && bugLevel != "" {
             return ScreeningCase.one
         }
-        if prodect == "" && project == "" && developer != "" && bugLevel == "" {
+        if product == "" && project == "" && developer != "" && bugLevel == "" {
             return ScreeningCase.one
         }
-        if prodect == "" && project != "" && developer == "" && bugLevel == "" {
+        if product == "" && project != "" && developer == "" && bugLevel == "" {
             return ScreeningCase.one
         }
-        if prodect != "" && project == "" && developer == "" && bugLevel == "" {
+        if product != "" && project == "" && developer == "" && bugLevel == "" {
             return ScreeningCase.one
         }
         
         // .two
-        if prodect == "" && project == "" && developer != "" && bugLevel != "" {
+        if product == "" && project == "" && developer != "" && bugLevel != "" {
             return ScreeningCase.two
         }
-        if prodect == "" && project != "" && developer == "" && bugLevel != "" {
+        if product == "" && project != "" && developer == "" && bugLevel != "" {
             return ScreeningCase.two
         }
-        if prodect == "" && project == "" && developer != "" && bugLevel != "" {
+        if product == "" && project != "" && developer != "" && bugLevel == "" {
             return ScreeningCase.two
         }
-        if prodect != "" && project == "" && developer == "" && bugLevel != "" {
+        if product != "" && project == "" && developer == "" && bugLevel != "" {
             return ScreeningCase.two
         }
-        if prodect != "" && project == "" && developer != "" && bugLevel == "" {
+        if product != "" && project == "" && developer != "" && bugLevel == "" {
             return ScreeningCase.two
         }
-        if prodect != "" && project != "" && developer == "" && bugLevel == "" {
+        if product != "" && project != "" && developer == "" && bugLevel == "" {
             return ScreeningCase.two
         }
-        
         
         // .three
-//        if prodect == "" && project == "" && developer == "" && bugLevel != "" {
-//            return ScreeningCase.three
-//        }
-//        if prodect == "" && project == "" && developer != "" && bugLevel == "" {
-//            return ScreeningCase.three
-//        }
-//        if prodect == "" && project != "" && developer == "" && bugLevel == "" {
-//            return ScreeningCase.three
-//        }
-//        if prodect != "" && project == "" && developer == "" && bugLevel == "" {
-//            return ScreeningCase.three
-//        }
-        if prodect == "" && project != "" && developer != "" && bugLevel != "" {
+        if product == "" && project != "" && developer != "" && bugLevel != "" {
             return ScreeningCase.three
         }
-        if prodect != "" && project == "" && developer != "" && bugLevel != "" {
+        if product != "" && project == "" && developer != "" && bugLevel != "" {
             return ScreeningCase.three
         }
-        if prodect != "" && project != "" && developer == "" && bugLevel != "" {
+        if product != "" && project != "" && developer == "" && bugLevel != "" {
             return ScreeningCase.three
         }
-        if prodect != "" && project != "" && developer != "" && bugLevel == "" {
+        if product != "" && project != "" && developer != "" && bugLevel == "" {
             return ScreeningCase.three
         }
         
         // .four
-        if prodect != "" && project != "" && developer != "" && bugLevel != "" {
+        if product != "" && project != "" && developer != "" && bugLevel != "" {
             return ScreeningCase.four
         }
         
@@ -651,33 +625,33 @@ class ThirdViewController: UIViewController {
     
     /* 选中2个，6种 （） */
     func filterCaseTwo() {
-        let prodect = parameters["product"]
+        let product = parameters["product"]
         let project = parameters["project"]
         let developer = parameters["developer"]
         let bugLevel = parameters["bugLevel"]
         
         // 12
-        if prodect != "" && project != "" && developer == "" && bugLevel == "" {
+        if product != "" && project != "" && developer == "" && bugLevel == "" {
             caseTwo01()
         }
         // 13
-        if prodect != "" && project == "" && developer != "" && bugLevel == "" {
+        if product != "" && project == "" && developer != "" && bugLevel == "" {
             caseTwo02()
         }
         // 14
-        if prodect != "" && project == "" && developer == "" && bugLevel != "" {
+        if product != "" && project == "" && developer == "" && bugLevel != "" {
             caseTwo03()
         }
         // 23
-        if prodect == "" && project != "" && developer != "" && bugLevel == "" {
+        if product == "" && project != "" && developer != "" && bugLevel == "" {
             caseTwo04()
         }
         // 24
-        if prodect == "" && project != "" && developer == "" && bugLevel != "" {
+        if product == "" && project != "" && developer == "" && bugLevel != "" {
             caseTwo05()
         }
         // 34
-        if prodect == "" && project == "" && developer != "" && bugLevel != "" {
+        if product == "" && project == "" && developer != "" && bugLevel != "" {
             caseTwo06()
         }
     }
@@ -760,7 +734,7 @@ class ThirdViewController: UIViewController {
         bugLevels = filterRepeat(bugLevels)
         screeingDic = ["products": products, "projects": projects, "developers": developers, "bugLevels": bugLevels]
     }
-    /* 23 */ ？？？
+    /* 23 ???*/
     func caseTwo04() {
         var products: [String] = []
         var projects: [String] = []
@@ -770,7 +744,7 @@ class ThirdViewController: UIViewController {
         for product in allData {
             for project in (product as! [String: Any])["projects"] as! [[String: Any]] {
                 if project["project_name"] as? String == parameters["project"] {
-                    products.append(parameters["product"]!)
+                    products.append((product as! [String: Any])["product_name"] as! String)
                     
                     for developer in project["developers"] as! [[String: Any]]{
                         developers.append(developer["developer_name"] as! String)   // 当前项目下所有开发
