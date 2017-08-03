@@ -14,38 +14,17 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var navigationBarWithSegment: UINavigationBar!
     
-    var dataModels: [RankingModel]?
+    /**
+     问题：
+     1、var dataModels: [RankingModel]？，optional类型时，dataModls总是为nil？？？
+     2、var dataModels: [RankingModel]！，非optional时，numberOfRowsInSection里报错？？？
+    */
+    var dataModels: [RankingModel] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
         print("viewDidLoad")
         // Do any additional setup after loading the view, typically from a nib.
-        //
-        //view.isOpaque = false
-        //view.alpha = 0.1
-        //view.backgroundColor = UIColor.gray
-        
-        ///
-        /*
-        let headers = [
-            "Content-Type": "application/json",
-            "seqnum": "0",
-            "ver": "1.0",
-            "uid": "498",
-            "token": "nq4LWlvy7lJW-kh07fRRuDGeBwRvpnsJ0BGl17Xe4eeZEwvXwQN8HoBAluLmJbpQ",
-            ]
-        Network.request(method: "POST", url: "http://test.api.fengchaoyou.com/v1/product/detail", headers: headers, parameters: ["data": ["id": "46658"]]) { (data, response, error) in
-
-            do {
-                if let jsonData = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as? [String: AnyObject] {
-                    print("jsonData: \(String(describing: jsonData))")
-                }
-            } catch let error {
-                print("error: \(error.localizedDescription)")
-            }
-            
-        }
-        */
         
         //
         navigationBarWithSegment.isTranslucent = false
@@ -53,12 +32,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //
         tableView.dataSource = self
         tableView.delegate = self
-//        tableView.estimatedRowHeight = 100
-//        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.rowHeight = 100
+        tableView.estimatedRowHeight = 50
+        tableView.rowHeight = UITableViewAutomaticDimension
+        //tableView.rowHeight = 50
         
         // request data
-        requestData()
+        //requestData()
         
     }
     
@@ -107,7 +86,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         print("numberOfRowsInSection")
-        return self.dataModels?.count ?? 5
+        return self.dataModels.count
         //return 10
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -115,7 +94,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //        cell.rankLabel.text = "\(indexPath.row)"
 //        cell.nameLabel.text = "头像：同我的微店中设置的头像，点击弹层展示更换头像的方式，可以调起相机的前置摄像头拍摄，也可以从相册中选择。"
 //        cell.totalCountLabel.text = "999"
-        cell.ranking = dataModels?[indexPath.row]       
+        cell.ranking = dataModels[indexPath.row]
         return cell
     }
     
@@ -134,13 +113,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 var rankings = [RankingModel]()
                 rankings = dataArray.map {
                     RankingModel(
-                        index: String(describing: $0.index(forKey: "realname")),
+                        index: "00",
                         name: $0["realname"] as! String,
                         totalCount: $0["resolvedNum"] as! String
                     )
                 }
-                self.dataModels?.append(contentsOf: rankings)
+                self.dataModels =  rankings
+                print("dataModels: \(self.dataModels)")
                 DispatchQueue.main.async {
+                    print("go back to main")
                     self.tableView.reloadData()
                 }
                 

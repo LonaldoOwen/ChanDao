@@ -13,7 +13,7 @@ struct RankingModel {
     let name: String
     let totalCount: String
     
-    init(index: String, name: String, totalCount:String) {
+    init(index: String = "0", name: String, totalCount:String) {
         self.index = index
         self.name = name
         self.totalCount = totalCount
