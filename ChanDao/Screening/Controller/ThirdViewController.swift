@@ -621,8 +621,6 @@ class ThirdViewController: UIViewController {
     }
     
     
-    
-    
     /* 选中2个，6种 （） */
     func filterCaseTwo() {
         let product = parameters["product"]
@@ -681,10 +679,6 @@ class ThirdViewController: UIViewController {
         screeingDic = ["products": products, "projects": projects, "developers": developers, "bugLevels": bugLevels]
 
     }
-
-    
-    /*产品选中，*/
-    func caseOne01(_ object: Any) {
         
 
     /* 13 */
@@ -749,13 +743,17 @@ class ThirdViewController: UIViewController {
         
         for product in allData {
             for project in (product as! [String: Any])["projects"] as! [[String: Any]] {
+                for developer in project["developers"] as! [[String: Any]]{
+                    if developer["developer_name"] as? String == parameters["developer"] {
+                        projects.append(project["project_name"] as! String)     // 包含当前开发的所有项目
+                    }
+                }
                 if project["project_name"] as? String == parameters["project"] {
                     products.append((product as! [String: Any])["product_name"] as! String)
-                    
                     for developer in project["developers"] as! [[String: Any]]{
                         developers.append(developer["developer_name"] as! String)   // 当前项目下所有开发
                         if developer["developer_name"] as? String == parameters["developer"] {
-                            projects.append(project["project_name"] as! String)
+                            projects.append(project["project_name"] as! String)     // 包含当前开发的所有项目
                             bugLevels.append(contentsOf: developer["bug_levels"] as! [String])
                         }
                     }
@@ -763,25 +761,112 @@ class ThirdViewController: UIViewController {
             }
         }
         // 去重
+        projects = filterRepeat(projects)
         bugLevels = filterRepeat(bugLevels)
         screeingDic = ["products": products, "projects": projects, "developers": developers, "bugLevels": bugLevels]
     }
 
-    /* bug级别选中，*/
-    func caseOne04(_ object: Any) {
-        
-
+    
     /* 24 */
-    func caseTwo05() {}
+    func caseTwo05() {
+        var products: [String] = []
+        var projects: [String] = []
+        var developers: [String] = []
+        var bugLevels: [String] = []
+        
+        for product in allData {
+            for project in (product as! [String: Any])["projects"] as! [[String: Any]] {
+                for developer in project["developers"] as! [[String: Any]]{
+                    if (developer["bug_levels"] as! [String]).contains(parameters["bugLevel"]!) {
+                        projects.append(project["project_name"] as! String)     // 包含当前bugLevel的所有项目
+                    }
+                }
+                if project["project_name"] as? String == parameters["project"] {
+                    products.append((product as! [String: Any])["product_name"] as! String)
+                    for developer in project["developers"] as! [[String: Any]]{
+                        if (developer["bug_levels"] as! [String]).contains(parameters["bugLevel"]!) {
+                            developers.append(developer["developer_name"] as! String)
+                            bugLevels.append(contentsOf: developer["bug_levels"] as! [String]) // 当前项目下所有bugLevel
+                        }
+                    }
+                }
+            }
+        }
+        // 去重
+        projects = filterRepeat(projects)
+        bugLevels = filterRepeat(bugLevels)
+        screeingDic = ["products": products, "projects": projects, "developers": developers, "bugLevels": bugLevels]
+    }
     /* 34 */
-    func caseTwo06() {}
-    
-    
-    
+    func caseTwo06() {
+        var products: [String] = []         // 同时包含该开发及bugLevel的所有产品
+        var projects: [String] = []         // 同时包含该开发及bugLevel的所有项目
+        var developers: [String] = []       // 包含该bugLevel的所有开发
+        var bugLevels: [String] = []        // 包含该开发下的所有bugLevel
+        
+        for product in allData {
+            for project in (product as! [String: Any])["projects"] as! [[String: Any]] {
+                for developer in project["developers"] as! [[String: Any]]{
+                    if developer["developer_name"] as? String == parameters["developer"] && (developer["bug_levels"] as! [String]).contains(parameters["bugLevel"]!) {
+                        products.append((product as! [String: Any])["product_name"] as! String)
+                        projects.append(project["project_name"] as! String)
+                    }
+                    if developer["developer_name"] as? String == parameters["developer"] {
+                        bugLevels.append(contentsOf: developer["bug_levels"] as! [String])
+                    }
+                    if (developer["bug_levels"] as! [String]).contains(parameters["bugLevel"]!) {
+                        developers.append(developer["developer_name"] as! String)
+                    }
+                }
+                
+            }
+        }
+        // 去重
+        projects = filterRepeat(projects)
+        bugLevels = filterRepeat(bugLevels)
+        screeingDic = ["products": products, "projects": projects, "developers": developers, "bugLevels": bugLevels]
+    }
     
     
     /* 选中3个，4种 （） */
-    func filterCaseThree() {}
+    func filterCaseThree() {
+        let product = parameters["product"]
+        let project = parameters["project"]
+        let developer = parameters["developer"]
+        let bugLevel = parameters["bugLevel"]
+        // .three
+        if product != "" && project != "" && developer != "" && bugLevel == "" {
+            caseThree01()
+        }
+        if product != "" && project != "" && developer == "" && bugLevel != "" {
+            caseThree02()
+        }
+        if product != "" && project == "" && developer != "" && bugLevel != "" {
+            caseThree03()
+        }
+        if product == "" && project != "" && developer != "" && bugLevel != "" {
+            caseThree04()
+        }
+
+    }
+    /* 123 */
+    func caseThree01() {
+        var products: [String] = []         // 同时包含该项目及开发的所有产品
+        var projects: [String] = []         // 当前产品下包含该开发的所有项目
+        var developers: [String] = []       // 当前产品及项目下的所有开发
+        var bugLevels: [String] = []        // 当前开发下的所有bugLevel
+        
+        
+    }
+    /* 124 */
+    func caseThree02() {}
+    /* 134 */
+    func caseThree03() {}
+    /* 234 */
+    func caseThree04() {}
+    
+    
+    
     /* 选中4个，1种 （） */
     func filterCaseFour() {}
     
@@ -843,7 +928,7 @@ class ThirdViewController: UIViewController {
     
     
     
-    //
+    // 数组去重
     func filterRepeat(_ array: [String]) -> [String] {
         var tempDic: [String: String] = [:]
         for element in array {
@@ -892,6 +977,9 @@ class ThirdViewController: UIViewController {
         }
         self.present(pickerVC, animated: true, completion: nil)
     }
+    
+    
+    
    
     
     
