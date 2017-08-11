@@ -120,6 +120,16 @@
                             <string>三级</string>
                         </array>
                     </dict>
+                    <dict>
+                        <key>developer_name</key>
+                        <string>开发000</string>
+                        <key>bug_levels</key>
+                        <array>
+                            <string>二级</string>
+                            <string>三级</string>
+                        </array>
+                    </dict>
+
                 </array>
 			</dict>
 		</array>
@@ -155,6 +165,15 @@
                     <dict>
                         <key>developer_name</key>
                         <string>开发102</string>
+                        <key>bug_levels</key>
+                        <array>
+                            <string>二级</string>
+                            <string>三级</string>
+                        </array>
+                    </dict>
+                    <dict>
+                        <key>developer_name</key>
+                        <string>开发000</string>
                         <key>bug_levels</key>
                         <array>
                             <string>二级</string>

@@ -48,7 +48,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         navigationController?.navigationBar.shadowImage = UIImage()
         //navigationController?.navigationBar.barTintColor = barBackgroundColor
         // request data
-        //requestData()
+        requestData()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
