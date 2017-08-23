@@ -6,7 +6,7 @@
 //  Copyright © 2017年 owen. All rights reserved.
 //
 /**
- 筛选条件页面：
+ 筛选条件页面：使用Storyb创建UI；筛选逻辑本地处理
  
  */
 
@@ -32,7 +32,13 @@ class ThirdViewController: UIViewController {
     "developer": "",
     "bugLevel": ""
     ]
-    
+    /*参数使用id*/
+    var idParameters: [String: String] = [
+        "product": "",
+        "project": "",
+        "developer": "",
+        "bugLevel": ""
+    ]
     
 
     override func viewDidLoad() {
@@ -52,6 +58,9 @@ class ThirdViewController: UIViewController {
         
         // 请求服务器数据
         requestData()
+        
+
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -75,6 +84,27 @@ class ThirdViewController: UIViewController {
     
     /// MARK: actions
     
+    @IBAction func resetClick(_ sender: UIButton) {
+        print("resetClick")
+        // label重置
+        self.bugLevel.text = ""
+        self.product.text = ""
+        self.project.text = ""
+        self.developer.text = ""
+        // parameters重置
+        self.parameters = [
+        "product": "",
+        "project": "",
+        "developer": "",
+        "bugLevel": ""
+        ]
+    }
+    
+    @IBAction func searchClick(_ sender: UIButton) {
+        print("searchClick")
+        // 跳转到结果页
+    }
+    
     // 筛选条件
     @IBAction func handleClick(_ sender: UIControl) {
         print("Clicked on: \(sender.tag)")
@@ -88,8 +118,56 @@ class ThirdViewController: UIViewController {
         showPickerVC(sender)
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        if segue.identifier == "ResultVC" {
+            print("ResultVC")
+            let destinationVC: SearchResultViewController = segue.destination as! SearchResultViewController
+            self.convertParametersToID(parameters)
+            destinationVC.parameters = idParameters
+        }
+        
+    }
+    
     
     /// MARK: helper methods
+    
+    func productDict() -> [String: String] {
+        var dict: [String: String] = [:]
+        for product in allData {
+            let product = product as! [String: Any]
+            dict.updateValue(product["product_name"] as! String, forKey: product["product_id"] as! String)
+        }
+        return dict
+    }
+    func projectDict() -> [String: String] {
+        var dict: [String: String] = [:]
+        for product in allData {
+            let product = product as! [String: Any]
+            let projects = product["projects"] as! [[String: Any]]
+            for project in projects {
+                dict.updateValue(project["project_name"] as! String, forKey: project["project_id"] as! String)
+            }
+        }
+        return dict
+    }
+    // 将parameters中的product、project转换为id类型
+    func convertParametersToID(_ parameters: [String: String]) {
+        let productDict = self.productDict()
+        let projectDict = self.projectDict()
+        productDict.forEach { (key, value) in
+            if value == parameters["product"] {
+                idParameters["product"] = key
+            }
+        }
+        projectDict.forEach { (key, value) in
+            if value == parameters["project"] {
+                idParameters["project"] = key
+            }
+        }
+        idParameters["developer"] = parameters["developer"]
+        idParameters["bugLevel"] = parameters["bugLevel"]
+    }
     
 
     /// 方法二：根据已经选中的情况进行组合，然后使用for－in查找

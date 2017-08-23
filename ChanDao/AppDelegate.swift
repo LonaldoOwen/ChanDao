@@ -35,6 +35,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+        print("applicationDidBecomeActive: ")
+        // 获取共享的userDefaults
+        let userDefaults = UserDefaults(suiteName: "userDefaults")
+        if (userDefaults?.bool(forKey: "has-new-share"))! {
+            print("Has new share: \(String(describing: userDefaults?.value(forKey: "image")))")
+        }
     }
 
     func applicationWillTerminate(_ application: UIApplication) {

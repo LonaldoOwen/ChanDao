@@ -48,7 +48,8 @@ class NetworkManager {
     func buildBody() {
         if self.parameters.count > 0 && self.method != "GET" {
             // Content-Type = application/json
-            request.httpBody = try? JSONSerialization.data(withJSONObject: self.parameters, options: .prettyPrinted)
+            let parameters: [String: Any] = ["data": self.parameters]
+            request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             //request.httpBody = buildParams(parameters: parameters).data(using: .utf8, allowLossyConversion: false)
         }
         print("request.httpBody: \(request.httpBody)")

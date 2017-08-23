@@ -5,6 +5,9 @@
 //  Created by owen on 17/7/29.
 //  Copyright © 2017年 owen. All rights reserved.
 //
+/**
+ 说明：使用UIPickerView用于显示可选内容
+ */
 
 import UIKit
 

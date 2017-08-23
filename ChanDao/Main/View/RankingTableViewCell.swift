@@ -5,6 +5,10 @@
 //  Created by libowen on 2017/7/6.
 //  Copyright © 2017年 libowen. All rights reserved.
 //
+/**
+ 说明：代码方式自定义cell；autolayout布局
+ 
+ */
 
 import UIKit
 
@@ -83,8 +87,12 @@ class RankingTableViewCell: UITableViewCell {
     }
     
 
-    
-    
     /// 事件处理clsure
 
 }
+
+
+
+
+
+

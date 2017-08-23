@@ -42,8 +42,8 @@ public class Network {
     }
     
     // POST 带参数
-    public static func post(url: String, headers: [String: String], paremeters: [String: Any], completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
-        let manager = NetworkManager(url: url, method: "POST", headers: headers, parameters: paremeters, completionHandler: completionHandler)
+    public static func post(url: String, headers: [String: String], paremeters: [String: Any]?, completionHandler: @escaping (Data?, URLResponse?, Error?) -> Void) {
+        let manager = NetworkManager(url: url, method: "POST", headers: headers, parameters: paremeters!, completionHandler: completionHandler)
         manager.run()
     }
 }
