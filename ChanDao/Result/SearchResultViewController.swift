@@ -88,23 +88,31 @@ class SearchResultViewController: UIViewController, UITableViewDataSource {
             print("response: \(String(describing: response))")
             do {
                 let jsonDict = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
-                let dataArray: [[String: String]] = (jsonDict as! [String: Any])["data"] as! [[String : String]]
-                var results = [ResultModel]()
-                results = dataArray.map {
-                    ResultModel(
-                        developer: $0["developer_name"]!,
-                        product: $0["product"]!,
-                        project: $0["project"]!,
-                        level: $0["bug_level"]!,
-                        totalCount: $0["total_count"]!
-                    )
-                }
-                self.results = results
-                // 返回主线程，更新tableView
-                DispatchQueue.main.async {
-                    print("go back to main")
-                    self.spinner.stopAnimating()
-                    self.tableView.reloadData()
+                print("Result: \(jsonDict)")
+                
+                let code = (jsonDict as! [String: Any])["code"] as! String
+                
+                if code == "10000" {
+                    let dataArray: [[String: String]] = (jsonDict as! [String: Any])["data"] as! [[String : String]]
+                    var results = [ResultModel]()
+                    results = dataArray.map {
+                        ResultModel(
+                            developer: $0["developer_name"]!,
+                            product: $0["product"]!,
+                            project: $0["project"]!,
+                            level: $0["bug_level"]!,
+                            totalCount: $0["total_count"]!
+                        )
+                    }
+                    self.results = results
+                    // 返回主线程，更新tableView
+                    DispatchQueue.main.async {
+                        print("go back to main")
+                        self.spinner.stopAnimating()
+                        self.tableView.reloadData()
+                    }
+                } else {
+                    print("error code: \(code)")
                 }
             } catch let error {
                 print("request error: \(error)")

@@ -34,7 +34,7 @@ class RankingTableViewCell: UITableViewCell {
         
         self.contentView.addSubview(rankLabel)
         rankLabel.textColor = UIColor.black
-        rankLabel.backgroundColor = UIColor.gray
+        //rankLabel.backgroundColor = UIColor.gray
         rankLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false

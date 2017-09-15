@@ -15,6 +15,8 @@
 		2306D0CA1F4C19FD0018057E /* ShareChanDao.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 2306D0C01F4C19FC0018057E /* ShareChanDao.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		2306D0D01F4C2E920018057E /* ShareHostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306D0CF1F4C2E920018057E /* ShareHostViewController.swift */; };
 		2306D1111F4D66AC0018057E /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306D1101F4D66AC0018057E /* ResultModel.swift */; };
+		232034741F6A3BC2005407E3 /* CreateBugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232034731F6A3BC2005407E3 /* CreateBugViewController.swift */; };
+		232034761F6A3D2D005407E3 /* SelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232034751F6A3D2D005407E3 /* SelectedView.swift */; };
 		2332B67F1F26127F00EFD978 /* TempTags.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2332B67E1F26127F00EFD978 /* TempTags.plist */; };
 		2332B68D1F2773FE00EFD978 /* SecondScreeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332B68C1F2773FE00EFD978 /* SecondScreeningViewController.swift */; };
 		2332B68F1F277A3E00EFD978 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332B68E1F277A3E00EFD978 /* ItemView.swift */; };
@@ -83,6 +85,8 @@
 		2306D0D11F4C2F540018057E /* ChanDao.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ChanDao.entitlements; sourceTree = "<group>"; };
 		2306D0D21F4C2FE80018057E /* ShareChanDao.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareChanDao.entitlements; sourceTree = "<group>"; };
 		2306D1101F4D66AC0018057E /* ResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
+		232034731F6A3BC2005407E3 /* CreateBugViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateBugViewController.swift; sourceTree = "<group>"; };
+		232034751F6A3D2D005407E3 /* SelectedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedView.swift; sourceTree = "<group>"; };
 		2332B67E1F26127F00EFD978 /* TempTags.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TempTags.plist; sourceTree = "<group>"; };
 		2332B68C1F2773FE00EFD978 /* SecondScreeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondScreeningViewController.swift; sourceTree = "<group>"; };
 		2332B68E1F277A3E00EFD978 /* ItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
@@ -155,6 +159,39 @@
 				2306D0C71F4C19FD0018057E /* Info.plist */,
 			);
 			path = ShareChanDao;
+			sourceTree = "<group>";
+		};
+		2320346D1F6A3A1C005407E3 /* CreatBug */ = {
+			isa = PBXGroup;
+			children = (
+				232034701F6A3BC2005407E3 /* Model */,
+				232034711F6A3BC2005407E3 /* View */,
+				232034721F6A3BC2005407E3 /* Controller */,
+			);
+			path = CreatBug;
+			sourceTree = "<group>";
+		};
+		232034701F6A3BC2005407E3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		232034711F6A3BC2005407E3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				232034751F6A3D2D005407E3 /* SelectedView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		232034721F6A3BC2005407E3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				232034731F6A3BC2005407E3 /* CreateBugViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		2332B6951F29AA1400EFD978 /* Temp */ = {
@@ -306,6 +343,7 @@
 				2306D0D11F4C2F540018057E /* ChanDao.entitlements */,
 				5A0EF3301F2C799E004970D1 /* MOKit */,
 				23CD730D1F18BF36006C70C1 /* Main */,
+				2320346D1F6A3A1C005407E3 /* CreatBug */,
 				23CD73131F18BF36006C70C1 /* Screening */,
 				5A0EF3251F2C259F004970D1 /* Picker */,
 				2306D0B51F4A83BE0018057E /* Result */,
@@ -455,6 +493,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5A0EF3371F2C799E004970D1 /* NetworkManager.swift in Sources */,
+				232034741F6A3BC2005407E3 /* CreateBugViewController.swift in Sources */,
 				23CD731E1F18BF36006C70C1 /* ScreeningViewController.swift in Sources */,
 				2332B6991F29F41900EFD978 /* CustomView.swift in Sources */,
 				2306D0D01F4C2E920018057E /* ShareHostViewController.swift in Sources */,
@@ -470,6 +509,7 @@
 				5A0EF3361F2C799E004970D1 /* Network.swift in Sources */,
 				5A84ACB91F0FD64500FC0E9A /* AppDelegate.swift in Sources */,
 				23CD73201F18BF36006C70C1 /* ScreeningTag.swift in Sources */,
+				232034761F6A3D2D005407E3 /* SelectedView.swift in Sources */,
 				23CD731D1F18BF36006C70C1 /* RankingTableViewCell.swift in Sources */,
 				5A0EF3191F2B89FC004970D1 /* ThirdViewController.swift in Sources */,
 				2332B69B1F2A212700EFD978 /* CustomButton.swift in Sources */,
@@ -680,6 +720,7 @@
 				2306D0CD1F4C19FD0018057E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5A84ACB01F0FD64500FC0E9A /* Build configuration list for PBXProject "ChanDao" */ = {
 			isa = XCConfigurationList;
