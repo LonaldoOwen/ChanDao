@@ -17,6 +17,8 @@
 		2306D1111F4D66AC0018057E /* ResultModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2306D1101F4D66AC0018057E /* ResultModel.swift */; };
 		232034741F6A3BC2005407E3 /* CreateBugViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232034731F6A3BC2005407E3 /* CreateBugViewController.swift */; };
 		232034761F6A3D2D005407E3 /* SelectedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232034751F6A3D2D005407E3 /* SelectedView.swift */; };
+		232627D91F711011000185BC /* AttachmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 232627D81F711011000185BC /* AttachmentView.swift */; };
+		232627DB1F711BB5000185BC /* 加号.png in Resources */ = {isa = PBXBuildFile; fileRef = 232627DA1F711BB5000185BC /* 加号.png */; };
 		2332B67F1F26127F00EFD978 /* TempTags.plist in Resources */ = {isa = PBXBuildFile; fileRef = 2332B67E1F26127F00EFD978 /* TempTags.plist */; };
 		2332B68D1F2773FE00EFD978 /* SecondScreeningViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332B68C1F2773FE00EFD978 /* SecondScreeningViewController.swift */; };
 		2332B68F1F277A3E00EFD978 /* ItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2332B68E1F277A3E00EFD978 /* ItemView.swift */; };
@@ -87,6 +89,8 @@
 		2306D1101F4D66AC0018057E /* ResultModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultModel.swift; sourceTree = "<group>"; };
 		232034731F6A3BC2005407E3 /* CreateBugViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateBugViewController.swift; sourceTree = "<group>"; };
 		232034751F6A3D2D005407E3 /* SelectedView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectedView.swift; sourceTree = "<group>"; };
+		232627D81F711011000185BC /* AttachmentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttachmentView.swift; sourceTree = "<group>"; };
+		232627DA1F711BB5000185BC /* 加号.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "加号.png"; sourceTree = "<group>"; };
 		2332B67E1F26127F00EFD978 /* TempTags.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = TempTags.plist; sourceTree = "<group>"; };
 		2332B68C1F2773FE00EFD978 /* SecondScreeningViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondScreeningViewController.swift; sourceTree = "<group>"; };
 		2332B68E1F277A3E00EFD978 /* ItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemView.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 			isa = PBXGroup;
 			children = (
 				232034751F6A3D2D005407E3 /* SelectedView.swift */,
+				232627D81F711011000185BC /* AttachmentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -289,6 +294,7 @@
 				5A0EF31D1F2C1E16004970D1 /* rr_info_arrow@2x.png */,
 				5A0EF31E1F2C1E16004970D1 /* selected@2x.png */,
 				5A0EF31F1F2C1E16004970D1 /* videoPoster_back@2x.png */,
+				232627DA1F711BB5000185BC /* 加号.png */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -471,6 +477,7 @@
 				2332B6911F277C2900EFD978 /* ItemView.xib in Resources */,
 				2332B69D1F2A213C00EFD978 /* CustomButton.xib in Resources */,
 				2332B67F1F26127F00EFD978 /* TempTags.plist in Resources */,
+				232627DB1F711BB5000185BC /* 加号.png in Resources */,
 				5A0EF3221F2C1E16004970D1 /* rr_info_arrow@2x.png in Resources */,
 				5A84ACBE1F0FD64500FC0E9A /* Main.storyboard in Resources */,
 				2306D0BB1F4AD6E00018057E /* ResultTableViewCell.xib in Resources */,
@@ -498,6 +505,7 @@
 				2332B6991F29F41900EFD978 /* CustomView.swift in Sources */,
 				2306D0D01F4C2E920018057E /* ShareHostViewController.swift in Sources */,
 				2332B68D1F2773FE00EFD978 /* SecondScreeningViewController.swift in Sources */,
+				232627D91F711011000185BC /* AttachmentView.swift in Sources */,
 				23CD731C1F18BF36006C70C1 /* ViewController.swift in Sources */,
 				23CD73221F18BF36006C70C1 /* SectionHeaderView.swift in Sources */,
 				2332B6971F29AA3100EFD978 /* TempViewController.swift in Sources */,

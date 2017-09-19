@@ -42,7 +42,7 @@ class NetworkManager {
         for (key, value) in headers {
             request.addValue(value, forHTTPHeaderField: key)
         }
-        print("request.headers: \(request.allHTTPHeaderFields)")
+        print("request.headers: \(String(describing: request.allHTTPHeaderFields))")
     }
     
     func buildBody() {
@@ -52,7 +52,7 @@ class NetworkManager {
             request.httpBody = try? JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
             //request.httpBody = buildParams(parameters: parameters).data(using: .utf8, allowLossyConversion: false)
         }
-        print("request.httpBody: \(request.httpBody)")
+        print("request.httpBody: \(String(describing: request.httpBody))")
     }
     
     func runTask() {

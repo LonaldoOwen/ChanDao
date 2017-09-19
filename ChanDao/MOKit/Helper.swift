@@ -13,6 +13,7 @@ class Helper {
 }
 
 extension Helper {
+    
     /// 读取plist返回数组
     /// @forResource plist名称
     /// @ofType plist类型
@@ -27,6 +28,17 @@ extension Helper {
         
         return tempArray
     }
+    
+    /// 调整图像尺寸
+    public static func resize(image: UIImage, bySize size: CGSize) -> UIImage {
+        
+        UIGraphicsBeginImageContext(size)
+        image.draw(in: CGRect(x: 0, y: 0, width: size.width, height: size.height))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage!
+    }
+    
 }
 
 

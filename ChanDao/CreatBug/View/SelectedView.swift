@@ -11,12 +11,18 @@
  
  */
 
+
+
 import UIKit
+
+
 
 enum SubviewType {
     case input
     case tapLabel
 }
+
+
 
 class SelectedView: UIView {
 
@@ -35,6 +41,7 @@ class SelectedView: UIView {
     var imageView: UIImageView!
     var inputTextFeild: UITextField!
     var subviewType: SubviewType!
+    var tapDetailHandler: (() -> Void)!
     
     init(_ type:SubviewType, titleText:String, placeholder:String) {
         super.init(frame: CGRect())
@@ -43,7 +50,9 @@ class SelectedView: UIView {
         setUpUI()
         title.text = titleText
         if type == .tapLabel {
-            detail.text = placeholder
+            // 调整detail显示
+            //detail.text = placeholder
+            detail.attributedText = NSAttributedString(string: placeholder, attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
         } else {
             inputTextFeild.placeholder = placeholder
         }
@@ -97,6 +106,9 @@ class SelectedView: UIView {
             detail.trailingAnchor.constraint(equalTo: imageView.leadingAnchor, constant: -8).isActive = true
             detail.setContentHuggingPriority(250, for: .horizontal)
             detail.setContentHuggingPriority(250, for: .vertical)
+            // action
+            detail.isUserInteractionEnabled = true
+            detail.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleDetailTap)))
         } else {
             /// .input
             
@@ -118,6 +130,13 @@ class SelectedView: UIView {
         seperator.trailingAnchor.constraint(equalTo: backView.trailingAnchor, constant: 0).isActive = true
         seperator.bottomAnchor.constraint(equalTo: backView.bottomAnchor, constant: 0).isActive = true
         seperator.heightAnchor.constraint(equalToConstant: 1).isActive = true
+    }
+    
+    
+    // action
+    func handleDetailTap() {
+        // 调用closure
+        self.tapDetailHandler()
     }
 
 }
