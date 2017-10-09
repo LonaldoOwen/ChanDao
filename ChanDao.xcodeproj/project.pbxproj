@@ -696,6 +696,7 @@
 				CODE_SIGN_ENTITLEMENTS = ChanDao/ChanDao.entitlements;
 				DEVELOPMENT_TEAM = KM6P947ZT3;
 				INFOPLIST_FILE = ChanDao/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.owen.ChanDao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -711,6 +712,7 @@
 				CODE_SIGN_ENTITLEMENTS = ChanDao/ChanDao.entitlements;
 				DEVELOPMENT_TEAM = KM6P947ZT3;
 				INFOPLIST_FILE = ChanDao/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.owen.ChanDao;
 				PRODUCT_NAME = "$(TARGET_NAME)";
