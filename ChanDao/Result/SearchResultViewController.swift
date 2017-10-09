@@ -83,23 +83,31 @@ class SearchResultViewController: UIViewController, UITableViewDataSource {
 
     func requestData() {
         print("SearchResultViewController: requestData")
+        
         Network.post(url: "http://zentao.cct.cn/app/search-bug", headers: headers, paremeters: parameters!) { (data, response, error) in
             
             print("response: \(String(describing: response))")
             do {
-                let jsonDict = try JSONSerialization.jsonObject(with: data!, options: .allowFragments)
+                let jsonDict: [String: Any] = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! [String: Any]
                 print("Result: \(jsonDict)")
                 
-                let code = (jsonDict as! [String: Any])["code"] as! String
+                let code = jsonDict["code"] as! String
                 
                 if code == "10000" {
-                    let dataArray: [[String: String]] = (jsonDict as! [String: Any])["data"] as! [[String : String]]
+                    /*
+                     问题：如果数据中有null的情况，下面转换会crash？？？
+                     原因：使用了force unwrap，对应value为null的，就会导致crash？？？
+                     解决：数据中不要存在null；其他解决方法？？？
+                    */
+                    let dataArray: [[String: String]] = jsonDict["data"] as! [[String : String]]
                     var results = [ResultModel]()
                     results = dataArray.map {
                         ResultModel(
                             developer: $0["developer_name"]!,
                             product: $0["product"]!,
+                            productName: $0["pd_name"]!,
                             project: $0["project"]!,
+                            projectName: $0["pj_name"]!,
                             level: $0["bug_level"]!,
                             totalCount: $0["total_count"]!
                         )

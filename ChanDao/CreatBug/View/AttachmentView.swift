@@ -39,6 +39,9 @@ class AttachmentView: UIView {
         return imageView
     }()
     
+    var tapAddImageHandler: (() -> Void)!
+    
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -92,7 +95,8 @@ class AttachmentView: UIView {
     func handleAddImageView() {
         print("Handle add imageView")
         
-        // 调起相册
+        // 调用closure
+        self.tapAddImageHandler()
         
         // 插入图像
         
@@ -106,7 +110,11 @@ class AttachmentView: UIView {
         contentView.layoutIfNeeded()
     }
 
-    
+    // 设置图片
+    func setImage(_ image: UIImage) {
+        let imageView: UIImageView = contentView.subviews.last as! UIImageView
+        imageView.image = image
+    }
     
     
     

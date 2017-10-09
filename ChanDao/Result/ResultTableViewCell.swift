@@ -40,8 +40,10 @@ class ResultTableViewCell: UITableViewCell {
     var resultModel: ResultModel? {
         didSet {
             self.developer.text = resultModel?.developer
-            self.product.text = resultModel?.product
-            self.project.text = resultModel?.project
+            //self.product.text = resultModel?.product
+            //self.project.text = resultModel?.project
+            self.product.text = resultModel?.productName
+            self.project.text = resultModel?.projectName
             self.level.text = resultModel?.level
             self.totalNum.text = resultModel?.totalCount
         }

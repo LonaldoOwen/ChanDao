@@ -30,6 +30,9 @@ extension Helper {
     }
     
     /// 调整图像尺寸
+    /// @image 需要调整的图像
+    /// @bySize 调整后的尺寸
+    /// @return UIImage 返回新图像
     public static func resize(image: UIImage, bySize size: CGSize) -> UIImage {
         
         UIGraphicsBeginImageContext(size)

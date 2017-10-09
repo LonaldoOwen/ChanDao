@@ -13,7 +13,7 @@
 
 import UIKit
 
-class CreateBugViewController: UIViewController {
+class CreateBugViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     // property
     var scrollView: UIScrollView = {
@@ -39,7 +39,130 @@ class CreateBugViewController: UIViewController {
     
     let selectName = ["产品", "项目", "模块", "版本", "指派", "严重程度"]
     var selectViews: [SelectedView] = []
-
+    /*
+    var parameters = [
+        "product": "16",                // 产品id
+        "module": "360",                // 模块
+        "project": "168",               // 项目id
+        "openedBuild[]": "226",         // 版本
+        "assignedTo": "chentianyu",
+        "type": "codeerror",
+        "os": "",
+        "browser": "",
+        "color": "",
+        "title": "test提交带附件2",       // 标题
+        "severity": "3",                // 级别
+        "pri": "0",
+        "steps": "<p>[步骤]</p>:\n<p>test1</p>:\n<p>test2</p>:\n<p>[结果]</p>:\n<p>result1</p>:\n<p>结果2</p>:\n<p>[期望]</p>:",//  步骤
+        "story": "",
+        "task": "",
+        "mailto[]": "",
+        "keywords": "",
+        "files[]": "修改信任设置.png",     // 附件file title
+        "labels[]": "",
+        "case": "0",
+        "caseVersion": "0",
+        "result": "0",
+        "testtask": "0",
+    ]
+    */
+    
+    var parameters = [
+        [
+            "name": "product",
+            "value": "16"
+        ],
+        [
+            "name": "module",
+            "value": "360"
+        ],
+        [
+            "name": "project",
+            "value": "168"
+        ],
+        [
+            "name": "openedBuild[]",
+            "value": "226"
+        ],
+        [
+            "name": "assignedTo",
+            "value": "chentianyu"
+        ],
+        [
+            "name": "type",
+            "value": "codeerror"
+        ],
+        [
+            "name": "os",
+            "value": ""
+        ],
+        [
+            "name": "browser",
+            "value": ""
+        ],
+        [
+            "name": "color",
+            "value": ""
+        ],
+        [
+            "name": "title",
+            "value": "test提交带附件--app01"       // 标题
+        ],
+        [
+            "name": "severity",
+            "value": "3"
+        ],
+        [
+            "name": "pri",
+            "value": "0"
+        ],
+        [
+            "name": "steps",                // 步骤
+            "value": "<p>[步骤]</p>:"
+        ],
+        [
+            "name": "story",
+            "value": ""
+        ],
+        [
+            "name": "task",
+            "value": ""
+        ],
+        [
+            "name": "mailto[]",
+            "value": ""
+        ],
+        [
+            "name": "keywords",
+            "value": ""
+        ],
+        [
+            "name": "files[]",
+            "fileName": "test-image.JPG",
+            "content": ""                   // 附件
+        ],
+        [
+            "name": "labels[]",
+            "value": ""
+        ],
+        [
+            "name": "case",
+            "value": "0"
+        ],
+        [
+            "name": "caseVersion",
+            "value": "0"
+        ],
+        [
+            "name": "result",
+            "value": "0"
+        ],
+        [
+            "name": "testtask",
+            "value": "0"
+        ]
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("CreateBugViewController: viewDidLoad")
@@ -88,7 +211,9 @@ class CreateBugViewController: UIViewController {
             backView.addArrangedSubview(selectedView)
             selectViews.append(selectedView)
             selectedView.translatesAutoresizingMaskIntoConstraints = false
+            //
             selectedView.tapDetailHandler = { [weak self] in
+                // show pickerVC
                 self?.showPickerVC(index)
             }
             
@@ -172,6 +297,22 @@ class CreateBugViewController: UIViewController {
         attachmentView.topAnchor.constraint(equalTo: attachmentTitle.bottomAnchor, constant: 0).isActive = true
         attachmentView.bottomAnchor.constraint(equalTo: attachmentBackView.bottomAnchor, constant: 0).isActive = true
         
+        attachmentView.tapAddImageHandler = { [weak self] in
+            
+            // 调起相册
+            if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+                let imagePicker = UIImagePickerController()
+                imagePicker.sourceType = .photoLibrary
+                imagePicker.delegate = self
+                self?.present(imagePicker, animated: true, completion: {
+                    //
+                })
+            } else {
+                print("相册不可用。。。")
+            }
+            
+        }
+        
         
         // add save view（保存）
         let saveBackView = UIView()
@@ -194,6 +335,42 @@ class CreateBugViewController: UIViewController {
     }
     
     
+    /// Delegate -- UIImagePickerControllerDelegate
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
+        print("didFinishPickingMediaWithInfo")
+        
+        // 收起相册VC
+        picker.dismiss(animated: true) { 
+            // 设置图片
+            let image: UIImage = info["UIImagePickerControllerOriginalImage"] as! UIImage
+            self.attachmentView.setImage(image)
+            // 设置参数
+            for (index, parameter) in self.parameters.enumerated() {
+                if parameter["content"] == "" {
+                    // 删除当前parameter
+                    self.parameters.remove(at: index)
+                    
+                    let imageData = UIImageJPEGRepresentation(image, 0.5)
+                    /*
+                     问题：content 为nil？？？
+                     */
+                    //let content = String(data: imageData!, encoding: String.Encoding.utf8)
+                    let content = imageData?.base64EncodedString()
+                    let newParameter = [
+                        "name": "files[]",
+                    "fileName": "test-image.JPG",
+                     "content": content]
+                    // 添加新parameter
+                    self.parameters.append(newParameter as! [String : String])
+                }
+            }
+        }
+    }
+    
+    
+    /// Helper methods
+    
     // 显示picker VC 并处理数据
     func showPickerVC(_ index: Int) {
         print("Tap index: \(index)")
@@ -203,15 +380,18 @@ class CreateBugViewController: UIViewController {
         pickerVC.modalTransitionStyle = .crossDissolve
         pickerVC.modalPresentationStyle = .overFullScreen
         // 传值
+        // 将点击的类型对应的数据传给pickerVC
         pickerVC.dataArray = ["a", "b", "c", "d"]
         // 回传值
         pickerVC.passValueClosure = { id in
+            
             print("Get index: \(index)")
             // 更新detail label
             let selectedView = self.selectViews[index]
-            //selectedView.detail.text = "\(id)"
             selectedView.detail.attributedText = NSAttributedString(string: "\(id)", attributes: [NSForegroundColorAttributeName: UIColor.lightGray])
             // 更新model
+            // 根据detail的显示数据找到对应的id，设置对应parameter
+            
         }
         // present
         self.present(pickerVC, animated: true, completion: nil)
@@ -221,9 +401,98 @@ class CreateBugViewController: UIViewController {
     func handleCreateBtn(sender: UIButton) {
         print("Create bug...")
         
-        // 请求数据
-        
+        // 上传数据
+        uploadDate()
         // 
+    }
+    
+    // 上传数据
+    func uploadDate() {
+        
+        let headers = [
+            "content-type": "multipart/form-data; boundary=----WebKitFormBoundary7MA4YWxkTrZu0gW",
+            "host": "chandao.cct.cn",
+            "proxy-connection": "keep-alive",
+            "pragma": "no-cache",
+            "cache-control": "no-cache",
+            "accept": "application/json, text/javascript, */*; q=0.01",
+            "origin": "http://chandao.cct.cn",
+            "x-requested-with": "XMLHttpRequest",
+            "user-agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_12_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/60.0.3112.113 Safari/537.36",
+            "referer": "http://chandao.cct.cn/index.php?m=bug&f=create&productID=16&branch=0&extra=moduleID=0",
+            "accept-encoding": "gzip, deflate",
+            "accept-language": "zh-CN,zh;q=0.8,en;q=0.6",
+            "cookie": "preBranch=0; lastProduct=16; sid=t5hus0j9ftb8e1kkqjmt5i4824; lang=zh-cn; theme=default"
+        ]
+        
+        
+        let boundary = "----WebKitFormBoundary7MA4YWxkTrZu0gW"
+        
+        /*
+        var body = ""
+        //let error: NSError? = nil
+        for param in parameters {
+            let paramName = param["name"]!
+            body += "--\(boundary)\r\n"
+            body += "Content-Disposition: form-data; name=\"\(paramName)\""
+            if let filename = param["fileName"] {
+                let contentType = "image/jpeg"
+//                let fileContent = try? String(contentsOfFile: filename, encoding: String.Encoding.utf8)
+//                if (error != nil) {
+//                    print(error!)
+//                }
+                let fileContent = param["content"]
+                
+                body += "; filename=\"\(filename)\"\r\n"
+                body += "Content-Type: \(contentType)\r\n\r\n"
+                body += fileContent!
+            } else if let paramValue = param["value"] {
+                body += "\r\n\r\n\(paramValue)"
+                body += "\n"
+            }
+        }
+        body += "\n" + boundary
+        let postData = body.data(using: String.Encoding.utf8)
+        */
+        let body: NSMutableData = NSMutableData()
+        for param in parameters {
+            let paramName = param["name"]
+            body.appendString("--\(boundary)\r\n")
+            body.appendString("Content-Disposition: form-data; name=\"\(paramName)\"")
+            if let filename = param["fileName"] {
+                let contentType = "image/jpeg"
+                let fileContent = param["content"]
+                let imageContent = Data.init(base64Encoded: fileContent!, options: [])
+                body.appendString("; filename=\"\(filename)\"\r\n")
+                body.appendString("Content-Type: \(contentType)\r\n\r\n")
+                body.append(imageContent!)
+            } else if let paramValue = param["value"] {
+                body.appendString("\r\n\r\n\(paramValue)")
+                body.appendString("\n")
+            }
+        }
+        body.appendString("\n--\(boundary)")
+        
+        
+        
+        let url = NSURL(string: "http://chandao.cct.cn/index.php?m=bug&f=create&productID=16&branch=0&extra=moduleID%3D0")! as URL
+        let request = NSMutableURLRequest(url: url, cachePolicy: .useProtocolCachePolicy, timeoutInterval: 10.0)
+        request.httpMethod = "POST"
+        request.allHTTPHeaderFields = headers
+        request.httpBody = body as Data
+        
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request as URLRequest, completionHandler: { (data, response, error) -> Void in
+            if (error != nil) {
+                print(error!)
+            } else {
+                let httpResponse = response as? HTTPURLResponse
+                print(httpResponse!)
+            }
+        })
+        
+        dataTask.resume()
+        
     }
     
     
@@ -243,3 +512,19 @@ class CreateBugViewController: UIViewController {
     */
 
 }
+
+
+extension NSMutableData {
+    
+    func appendString(_ string: String) {
+        let data = string.data(using: String.Encoding.utf8, allowLossyConversion: false)
+        append(data!)
+    }
+}
+
+
+
+
+
+
+

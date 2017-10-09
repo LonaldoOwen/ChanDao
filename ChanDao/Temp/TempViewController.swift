@@ -54,6 +54,20 @@ class TempViewController: UIViewController {
         customView.addTarget(self, action: #selector(handleClick), for: .touchUpInside)
         
         
+        // 验证图像转String
+        if let path = Bundle.main.path(forResource: "加号" , ofType: ".png") {
+            do {
+                let fileContent = try String(contentsOfFile: path, encoding: String.Encoding.utf8)
+                print("fileContent: \(fileContent))")
+            } catch let error {
+                print("error: \(error)")
+            }
+        } else {
+            print("path not found")
+        }
+        //print("fileContent: \(String(describing: fileContent))")
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

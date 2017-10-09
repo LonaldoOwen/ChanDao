@@ -80,7 +80,7 @@ class RankingTableViewCell: UITableViewCell {
     /// data model variable
     var ranking: RankingModel? {
         didSet {
-            self.rankLabel.text = ranking?.index
+            self.rankLabel.text = String(Int((ranking?.index)!)! + 1)
             self.nameLabel.text = ranking?.name
             self.totalCountLabel.text = ranking?.totalCount
         }

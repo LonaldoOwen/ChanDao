@@ -15,9 +15,13 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
     
     /// properties
     @IBOutlet var pickerView: UIPickerView!
+    
+    
     var dataArray: [Any] = []
     var passValueClosure: (Int) -> Void = { (index) -> Void in }
 
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -32,6 +36,7 @@ class PickerViewController: UIViewController, UIPickerViewDataSource, UIPickerVi
         print("viewDidLoad: dataArray: \(dataArray)")
         pickerView.selectRow(0, inComponent: 0, animated: false)
     }
+    
     override func viewWillAppear(_ animated: Bool) {
         //
         print("viewWillAppear: dataArray: \(dataArray)")
