@@ -12,7 +12,7 @@
 
 import UIKit
 
-@IBDesignable class ItemView: UIView {
+@IBDesignable class ItemView: UIControl {
 
     /*
     // Only override draw() if you perform custom drawing.
@@ -39,25 +39,79 @@ import UIKit
     
     
     /// initializer
+    //
     override init(frame: CGRect) {
         super.init(frame: frame)
         print("ItemView: init(frame:)")
         setupView()
     }
+    //
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         print("ItemView: init?(coder)")
         //
         setupView()
     }
+    //
     override func awakeFromNib() {
         super.awakeFromNib()
         print("ItemView: awakeFromNib")
+        //setupView()
     }
+    //
     override func layoutSubviews() {
         print("ItemView: layoutSubviews")
         //
+        //setupView()
     }
+    
+    /*
+    /// MARK:
+    override func beginTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        //
+        print("ItemView: beginTracking")
+        return true
+    }
+    override func continueTracking(_ touch: UITouch, with event: UIEvent?) -> Bool {
+        //
+        print("ItemView: continueTracking")
+        self.sendActions(for: .touchUpInside)
+        return true
+    }
+    override func endTracking(_ touch: UITouch?, with event: UIEvent?) {
+        //
+        print("ItemView: endTracking")
+
+    }
+    override func cancelTracking(with event: UIEvent?) {
+        //
+        print("ItemView: cancelTracking")
+    }
+    
+    ///
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        //
+        print("ItemView: touchesBegan")
+    }
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("ItemView: touchesMoved")
+    }
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("ItemView: touchesEnded")
+    }
+    override func touchesCancelled(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("ItemView: touchesCancelled")
+    }
+    */
+    
+    /// MARK:
+//    override func sendAction(_ action: Selector, to target: Any?, for event: UIEvent?) {
+//        //
+//        super.sendAction(action, to: target, for: event)
+//        print("ItemView: sendAction(_:to:for:)")
+//    }
+    
+    
     
     /// Private helper methods
     
@@ -81,6 +135,7 @@ import UIKit
         let bundle = Bundle(for: type(of: self))
         let nib = UINib(nibName: String(describing: type(of: self)), bundle: bundle)
         let view = nib.instantiate(withOwner: self, options: nil).first as! UIView
+        view.backgroundColor = UIColor.orange
         return view
     }
     

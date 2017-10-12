@@ -28,7 +28,7 @@ class SecondScreeningViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        print("SecondScreeningViewController: viewDidLoad")
         // Do any additional setup after loading the view.
         
         // 
@@ -47,18 +47,27 @@ class SecondScreeningViewController: UIViewController {
 //        contentView.addSubview(projectView)
 //        contentView.addSubview(developerView)
         
-        //layoutUI()
+        layoutUI()
         addItemViews()
+        
+        //
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
+        print("SecondScreeningViewController: viewWillAppear")
         //layoutUI()
     }
-    
     override func viewWillLayoutSubviews() {
-        layoutUI()
+        print("SecondScreeningViewController: viewWillLayoutSubviews")
+        //layoutUI()
+        //addItemViews()
+    }
+    override func awakeFromNib() {
+        print("SecondScreeningViewController: awakeFromNib")
+        //layoutUI()
+        //addItemViews()
     }
 
     override func didReceiveMemoryWarning() {
@@ -97,7 +106,10 @@ class SecondScreeningViewController: UIViewController {
         productView = ItemView()
         productView.frame = CGRect(x: 10, y: 80, width: width, height: 50)
         productView.titleText.text = "产品"
+        productView.valueText.text = "蜂巢app"
         contentView.addSubview(productView)
+        // action
+        productView.addTarget(self, action: #selector(handleClick), for: .touchUpInside)
         
         projectView = ItemView()
         projectView.frame = CGRect(x: 10, y: 150, width: width, height: 50)
@@ -114,6 +126,9 @@ class SecondScreeningViewController: UIViewController {
     @objc func handleTapGestureRecognizier(_ sender: UIGestureRecognizer) {
         print("tap")
         // show PickerView
+    }
+    @objc func handleClick(_ sender: UIControl) {
+        print("handleClick")
     }
 
     /*

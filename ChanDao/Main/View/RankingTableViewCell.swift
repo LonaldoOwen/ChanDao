@@ -5,6 +5,10 @@
 //  Created by libowen on 2017/7/6.
 //  Copyright © 2017年 libowen. All rights reserved.
 //
+/**
+ 说明：代码方式自定义cell；autolayout布局
+ 
+ */
 
 import UIKit
 
@@ -30,7 +34,7 @@ class RankingTableViewCell: UITableViewCell {
         
         self.contentView.addSubview(rankLabel)
         rankLabel.textColor = UIColor.black
-        rankLabel.backgroundColor = UIColor.gray
+        //rankLabel.backgroundColor = UIColor.gray
         rankLabel.translatesAutoresizingMaskIntoConstraints = false
         self.contentView.addSubview(nameLabel)
         nameLabel.translatesAutoresizingMaskIntoConstraints = false
@@ -76,10 +80,21 @@ class RankingTableViewCell: UITableViewCell {
     /// data model variable
     var ranking: RankingModel? {
         didSet {
-            self.rankLabel.text = ranking?.index
+            //self.rankLabel.text = ranking?.index
+
+            self.rankLabel.text = String(Int((ranking?.index)!)! + 1)
+            self.nameLabel.text = ranking?.name
+            self.totalCountLabel.text = ranking?.totalCount
         }
     }
     
+
     /// 事件处理clsure
 
 }
+
+
+
+
+
+
